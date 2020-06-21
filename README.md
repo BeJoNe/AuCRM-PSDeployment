@@ -33,3 +33,4 @@ Powershell powered packaging and deployment scripts for AuCRM (Aurea CRM)
 - Ensuring the existence of an empty dir (e.g. your application need an empty log dir to start)
 - Creating symbolic link (important for binaries)
 - Stopping and starting of AppPools and WindowsServices *(crucial for replacing binaries)*
+- Remote deployment call is only supported via working WinRM service
