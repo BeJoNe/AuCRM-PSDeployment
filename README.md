@@ -1,2 +1,2 @@
-# AuCRM-PSAutomation
-Powershell automation scripts for AuCRM (Aurea CRM)
+# AuCRM-Deployment
+Powershell deployment and packaging scripts for AuCRM (Aurea CRM)
