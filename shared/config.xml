@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE transport [
+	<!ENTITY DEVSTATNR "9001">
+	<!ENTITY TESTSTATNR "2">
+	<!ENTITY PRODSTATNR "1">
+]>
+<config>
+	<paths>
+		<core>C:\update.CRM\update.CRM win BTB</core>
+		<web>C:\update.CRM\update.CRM web BTB\web</web>
+		<server>C:\update.CRM\update.CRM web BTB\web</server>
+		<interface>C:\update.CRM\CRM.interface BTB\web</interface>
+		<webservices>C:\update.CRM\CRM.webservices BTB\web</webservices>
+		<MyCustomApp>C:\update.CRM\MyCustomApp</MyCustomApp>
+	</paths>
+	<applications>
+		<app type="AppPool" name="web" serviceId="updateCRM_web" hostedOn="DEVSRVR" />
+		<app type="AppPool" name="interface" serviceId="CRMinterface" hostedOn="DEVSRVR" />
+		<app type="AppPool" name="webservices" serviceId="CRMwebservices" hostedOn="DEVSRVR" />
+		<app type="WindowsService" name="server" serviceId="update.server" />
+	</applications>
+	<communications>
+		<comm platform="DEV" direction="out" stationNr="&TESTSTATNR;" />
+		<comm platform="DEV" direction="out" stationNr="&PRODSTATNR;" />
+		
+		<comm platform="TEST" direction="in" stationNr="&DEVSTATNR;" />
+		<comm platform="PROD" direction="in" stationNr="&DEVSTATNR;" />
+	</communications>
+	<designerConfigs>
+		<config id="SL_ROOT" />
+		<config id="SL_Admin" />
+	</designerConfigs>
+	<flatfiles>
+		<package name="Resources" usePath="web">
+			<file path="favicon.ico" />
+			
+			<directory path="images\update" />
+			<directory path="Data\reports\sl" />
+			<directory path="Data\settings\sl" />
+			<directory path="scripts\sl" />
+			
+			<ensureEmptyDir path="log" />
+			<ensureEmptyDir path="tmp" />			
+		</package>
+
+		<package name="SomeUsefulStaff" usePath="MyCustomApp">
+			<ensureEmptyDir path="log" />			
+			<ensureEmptyDir path="tmp" />			
+
+			<directory path="lib" />
+
+			<file path="readme.txt" />
+		</package>
+
+		<package name="SettingsWeb" usePath="web" ><!-- stopApps="web,server" # No binary transported yet -->
+			<file path="web.config" />
+			<file path="bin\update.Server.exe.config" />
+
+			<file path="system\settings\settings-dist.xml" />
+			<file path="system\settings\settings-shared.xml" />
+			
+			<file path="system\settings\settings.server-dist.xml" />
+			<file path="system\settings\settings.server-shared.xml" />
+		</package>
+
+		<package name="WebBin" usePath="web" stopApps="web,server"><!-- # Binaries are transported # -->
+			<ensureEmptyDir path="sl.bin" symlinkLocation="bin" />
+			
+			<directory path="sl.bin" exclude="test*" />
+		</package>
+
+	</flatfiles>
+</config>
