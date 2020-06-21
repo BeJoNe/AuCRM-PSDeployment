@@ -34,3 +34,9 @@ Powershell powered packaging and deployment scripts for AuCRM (Aurea CRM)
 - Creating symbolic link (important for binaries)
 - Stopping and starting of AppPools and WindowsServices *(crucial for replacing binaries)*
 - Remote deployment call is only supported via working WinRM service
+
+## TODOs
+- get rid of hard coded configuration options
+- support for multiple stations (e.g. staging, test)
+- class for collecting loaded settings
+- add Pester for unit-testing
