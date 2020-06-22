@@ -1,7 +1,7 @@
 # AuCRM PSDeployment
 Powershell powered packaging and deployment scripts for AuCRM (Aurea CRM)
 
-## TL;DR
+## Info
 - packaging or deployment is driven by shared/config.xml (except of some hard-coded logics)
 - currently the transportation (packing & deployment) is only possible for max. 2 stations
 - the config.xml of the source station is included in the zip package. Thus, consistency of output and input are always ensured.
